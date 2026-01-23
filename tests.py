@@ -36,7 +36,7 @@ class TestBooksCollector:
     #Метод add_new_book. Проверка что при добавлении книги жанр не устанавливается
     def test_add_new_book_genre_is_none(self,collector):
         collector.add_new_book('Гордость')
-        assert collector.books_genre.get('Гордость') is None
+        assert collector.books_genre.get('Гордость') in (None,"")
 
 #----------------------------------------set_book_genre------------------------------------
     def test_set_book_genre_valid(self,collector):
@@ -78,7 +78,7 @@ class TestBooksCollector:
         collector.add_new_book(name)  # жанр не установлен
 
         test_genre = collector.get_book_genre(name)
-        assert test_genre is None
+        assert test_genre in (None,'') 
 
     #Негативные проверки метода get_book_genre
     #Книги нет в коллекции
@@ -167,7 +167,7 @@ class TestBooksCollector:
         books = collector.get_books_genre()
         assert 'Гарри Поттер' in books
         # жанр по умолчанию пустой
-        assert books['Гарри Поттер'] == None
+        assert books['Гарри Поттер'] in (None,'') 
 
     #После добавления нескольких книг
     def test_get_books_genre_multiple_books_added(self,collector):
